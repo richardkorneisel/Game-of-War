@@ -2,8 +2,7 @@
 let playerOne;
 playerOne = prompt ("You are about to play the card game of WAR.  Please enter the first Knights name.");
 playerTwo = prompt ("Welcome, Oh honored Knight " + playerOne + "!  Who will you be battling today?");
-alert ("Welcome also, honored Knight " + playerTwo + "!");
-alert ("You will both start with 26 Knights at your disposal");
+alert ("Welcome, Oh honored Knight " + playerTwo + "!");
 alert ("Shall we begin");
 class Card {                                 
     constructor(suit, rank, score) {                // Define card deck class
@@ -56,9 +55,9 @@ class PlayGame {
         
         while (this.playerOneDeck.length !== 0 && this.playerTwoDeck.length !== 0) {    // check if either player array is zero.  If so announce winner.
             if (this.playerOneDeck[0].score > this.playerTwoDeck[0].score) {            // is score of playerone's array position [0] card greater than playertwo's
-                console.log (playerOne + " Wins Battle!");                              // if true declare playerOne winner of battle
-                console.log (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + " beats");
-                console.log (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit);
+                displayResult (playerOne + " Wins Battle!");                              // if true declare playerOne winner of battle
+                displayResult (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + " beats");
+                displayResult (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit);
                 if(isWar){                                                              // if play after war, put cards in warSpoils array into playerOne array
                     let temp = warSpoilsDeck.length;
                     for (let i=0; i<temp; i++) {
@@ -67,16 +66,15 @@ class PlayGame {
                 }
                 this.playerOneDeck.push(this.playerOneDeck.shift());                    //push compared cards to playerones array
                 this.playerOneDeck.push(this.playerTwoDeck.shift());
-                console.log (playerOne + " has " + this.playerOneDeck.length + " cards left");
-                console.log (playerTwo + " has " + this.playerTwoDeck.length + " cards left");
-                console.log ();
+                displayResult (playerOne + " has " + this.playerOneDeck.length + " cards left");
+                displayResult (playerTwo + " has " + this.playerTwoDeck.length + " cards left");
                 prompt ("Better luck next time Knight " + playerTwo + " Click OK or Enter to commence next battle");
                 isWar = false;                                                          //if not war state isWar is false
             } 
             else if (this.playerOneDeck[0].score < this.playerTwoDeck[0].score) {       // is score of playertwo's array position [0] card greater than playerone's
-                console.log (playerTwo + " Wins Battle!");                              // if true declare playerTwo winner of battle
-                console.log (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit + " beats");
-                console.log (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit);
+                displayResult (playerTwo + " Wins Battle!");                              // if true declare playerTwo winner of battle
+                displayResult (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit + " beats");
+                displayResult (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit);
                 if(isWar){                                                              // if play after war, put cards in warSpoils array into playerTwo array
                     let temp = warSpoilsDeck.length;
                     for (let i=0; i<temp; i++) {
@@ -85,18 +83,16 @@ class PlayGame {
                 }
                 this.playerTwoDeck.push(this.playerOneDeck.shift());                    //push compared cards to playertwos array
                 this.playerTwoDeck.push(this.playerTwoDeck.shift());                    //if not war state isWar is false
-                console.log (playerOne + " has " + this.playerOneDeck.length + " cards left");
-                console.log (playerTwo + " has " + this.playerTwoDeck.length + " cards left");
-                console.log ();
+                displayResult (playerOne + " has " + this.playerOneDeck.length + " cards left");
+                displayResult (playerTwo + " has " + this.playerTwoDeck.length + " cards left");
                 prompt ("Better luck next time Knight " + playerOne + " Click OK or Enter to commence next battle");
                 isWar = false;
                 }
             else if (this.playerOneDeck[0].score === this.playerTwoDeck[0].score) {     // are score in position [0] equal    
-                console.log ("The Battle is a Tie.  This means War!!");                // declare war
-                console.log (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + " is equal to");
-                console.log (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit);
-                console.log ("Each player must wager 3 Knights to go to the victor of the next battle");
-                console.log ();
+                displayResult ("The Battle is a Tie.  This means War!!");                // declare war
+                displayResult (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + " is equal to");
+                displayResult (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit);
+                displayResult ("Each player must wager 3 cards to go to the victor of the next battle");
                 prompt ("Click OK or Enter to commence the WAR!!!");
                 isWar = true;                                                           // declare isWar True
                 warSpoilsDeck.push(this.playerOneDeck.shift());                         // push equal cards to warSpoilsDeck
@@ -119,16 +115,16 @@ class PlayGame {
                 warSpoilsDeck.push(this.playerTwoDeck.shift());
             }
             if (this.playerOneDeck.length == 0) {                                       // Check playerOne deck length
-                console.log (playerTwo + " Wins Game!!");                               // if zero playerTwo wins
-                console.log (this.playerOneDeck.length);
-                console.log (this.playerTwoDeck.length);
-                console.log (warSpoilsDeck.length);    
+                displayResult (playerTwo + " Wins Game!!");                               // if zero playerTwo wins
+                displayResult (this.playerOneDeck.length);
+                displayResult (this.playerTwoDeck.length);
+                displayResult (warSpoilsDeck.length);    
                 }
             if (this.playerTwoDeck.length == 0) {                                       // Check playerTwo deck length   
-                console.log (playerOne = " Wins Game!!");                               // if zero playerOne wins
-                console.log (this.playerOneDeck.length);
-                console.log (this.playerTwoDeck.length);
-                console.log (warSpoilsDeck.length);
+                displayResult (playerOne = " Wins Game!!");                               // if zero playerOne wins
+                displayResult (this.playerOneDeck.length);
+                displayResult (this.playerTwoDeck.length);
+                displayResult (warSpoilsDeck.length);
                 }
         }
 
@@ -142,3 +138,10 @@ var deck = new Deck();          // constructing new deck of cards from construct
 //  console.log(deck.length);     // Check for Deck Creation.  Checking length of array.
 var game = new PlayGame(deck);  // Call playGame class with random deck
 game.playGame(playerOne,playerTwo);   // input players names into playGame
+
+// display results in html
+function displayResult(result) {
+    const resultText = document.createElement('p');
+    resultText.innerText = result;
+    document.body.appendChild(resultText);    
+}
