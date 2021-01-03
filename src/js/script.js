@@ -55,9 +55,8 @@ class PlayGame {
         
         while (this.playerOneDeck.length !== 0 && this.playerTwoDeck.length !== 0) {    // check if either player array is zero.  If so announce winner.
             if (this.playerOneDeck[0].score > this.playerTwoDeck[0].score) {            // is score of playerone's array position [0] card greater than playertwo's
-                displayResult (playerOne + " Wins Battle!");                              // if true declare playerOne winner of battle
-                displayResult (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + " beats");
-                displayResult (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit);
+                displayResult (playerOne + " Wins Battle!" + "\n\n" + playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + "\n\n" + "beats" + "\n\n" + playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit);                            // if true declare playerOne winner of battle
+                alert ("Click OK or Enter to commence");
                 if(isWar){                                                              // if play after war, put cards in warSpoils array into playerOne array
                     let temp = warSpoilsDeck.length;
                     for (let i=0; i<temp; i++) {
@@ -66,15 +65,13 @@ class PlayGame {
                 }
                 this.playerOneDeck.push(this.playerOneDeck.shift());                    //push compared cards to playerones array
                 this.playerOneDeck.push(this.playerTwoDeck.shift());
-                displayResult (playerOne + " has " + this.playerOneDeck.length + " cards left");
-                displayResult (playerTwo + " has " + this.playerTwoDeck.length + " cards left");
-                prompt ("Better luck next time Knight " + playerTwo + " Click OK or Enter to commence next battle");
+                displayResult (playerOne + " has " + this.playerOneDeck.length + " cards left" + "\n\n" + playerTwo + " has " + this.playerTwoDeck.length + " cards left");
+                alert ("Better luck next time " + "\n\n" + "Knight " + playerTwo + "\n\n" + "Click OK or Enter to commence next battle");
                 isWar = false;                                                          //if not war state isWar is false
             } 
             else if (this.playerOneDeck[0].score < this.playerTwoDeck[0].score) {       // is score of playertwo's array position [0] card greater than playerone's
-                displayResult (playerTwo + " Wins Battle!");                              // if true declare playerTwo winner of battle
-                displayResult (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit + " beats");
-                displayResult (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit);
+                displayResult (playerTwo + " Wins Battle!" + "\n\n" + playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit + "\n\n" + "beats" + "\n\n" + playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit);                              // if true declare playerTwo winner of battle
+                alert ("Click OK or Enter to commence");
                 if(isWar){                                                              // if play after war, put cards in warSpoils array into playerTwo array
                     let temp = warSpoilsDeck.length;
                     for (let i=0; i<temp; i++) {
@@ -83,28 +80,22 @@ class PlayGame {
                 }
                 this.playerTwoDeck.push(this.playerOneDeck.shift());                    //push compared cards to playertwos array
                 this.playerTwoDeck.push(this.playerTwoDeck.shift());                    //if not war state isWar is false
-                displayResult (playerOne + " has " + this.playerOneDeck.length + " cards left");
-                displayResult (playerTwo + " has " + this.playerTwoDeck.length + " cards left");
-                prompt ("Better luck next time Knight " + playerOne + " Click OK or Enter to commence next battle");
+                displayResult (playerOne + " has " + this.playerOneDeck.length + " cards left" + "\n\n" + playerTwo + " has " + this.playerTwoDeck.length + " cards left");
+                alert ("Better luck next time " + "\n\n" + " Knight " + playerOne + "\n\n" + "Click OK or Enter to commence next battle");
                 isWar = false;
                 }
             else if (this.playerOneDeck[0].score === this.playerTwoDeck[0].score) {     // are score in position [0] equal    
-                displayResult ("The Battle is a Tie.  This means War!!");                // declare war
-                displayResult (playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + " is equal to");
-                displayResult (playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit);
-                displayResult ("Each player must wager 3 cards to go to the victor of the next battle");
-                prompt ("Click OK or Enter to commence the WAR!!!");
+                displayResult ("The Battle is a Tie.  This means War!!" + "\n\n" + playerOne + "'s " + this.playerOneDeck[0].rank + " of " + this.playerOneDeck[0].suit + " is equal to" + "\n\n" + playerTwo + "'s " + this.playerTwoDeck[0].rank + " of " + this.playerTwoDeck[0].suit + "\n\n" + "Each player must wager 3 cards to go to the victor of the next battle");                // declare war
+                alert ("Click OK or Enter to commence the WAR!!!");
                 isWar = true;                                                           // declare isWar True
                 warSpoilsDeck.push(this.playerOneDeck.shift());                         // push equal cards to warSpoilsDeck
                 warSpoilsDeck.push(this.playerTwoDeck.shift());
                 if (this.playerOneDeck.length < 3) {                                    // see if playerOne has 3 cards.  if either player does not have 3 cards to complete war other player wins
-                    console.log(playerOne + " does not have enough forces to war.");
-                    console.log(playerTwo + " Wins!!");
+                    displayResult (playerOne + " does not have enough cards to war." + "\n\n" + playerTwo + " Wins!!");
                     break;                                                              // end loop and game
                 }
                 if (this.playerTwoDeck.length < 3) {                                    // see if playerOne has 3 cards.  if either player does not have 3 cards to complete war other player wins
-                    console.log(playerTwo + " does not have enough forces to war.");
-                    console.log(playerOne + " Wins!!");
+                    displayResult (playerTwo + " does not have enough cards to war." + "\n\n" + playerOne + " Wins!!");
                     break;                                                              // end loop and game
                 }
                 warSpoilsDeck.push(this.playerOneDeck.shift());                         // move 3 cards to warSpoilsDeck from playerOneDeck
@@ -115,16 +106,11 @@ class PlayGame {
                 warSpoilsDeck.push(this.playerTwoDeck.shift());
             }
             if (this.playerOneDeck.length == 0) {                                       // Check playerOne deck length
-                displayResult (playerTwo + " Wins Game!!");                               // if zero playerTwo wins
-                displayResult (this.playerOneDeck.length);
-                displayResult (this.playerTwoDeck.length);
-                displayResult (warSpoilsDeck.length);    
+                displayResult (playerTwo + " Wins Game!!" + "\n\n" + playerOne + " is out of cards");                               // if zero playerTwo wins
                 }
             if (this.playerTwoDeck.length == 0) {                                       // Check playerTwo deck length   
-                displayResult (playerOne = " Wins Game!!");                               // if zero playerOne wins
-                displayResult (this.playerOneDeck.length);
-                displayResult (this.playerTwoDeck.length);
-                displayResult (warSpoilsDeck.length);
+                displayResult (playerOne + " Wins Game!!" + "\n\n" + playerTwo + " is out of cards");                               // if zero playerOne wins
+                //displayResult (warSpoilsDeck.length);
                 }
         }
 
@@ -141,7 +127,8 @@ game.playGame(playerOne,playerTwo);   // input players names into playGame
 
 // display results in html
 function displayResult(result) {
-    const resultText = document.createElement('p');
+    document.querySelector('h1')?.remove();              // remove previous dialog output from screen
+    const resultText = document.createElement('h1');
     resultText.innerText = result;
     document.body.appendChild(resultText);    
 }
